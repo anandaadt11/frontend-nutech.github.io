@@ -1,4 +1,3 @@
-import React from "react";
 import RegisterLayout from "../components/layout/RegisterLayout";
 
 const Register = () => {

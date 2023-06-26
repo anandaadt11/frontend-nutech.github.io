@@ -6,7 +6,7 @@ import Button from "../components/moleculs/Button";
 import { FaPlus, FaSearch } from "react-icons/fa";
 import CardCustom from "../components/moleculs/CardCustom";
 import Input from "../components/moleculs/Input";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const [products, setProducts] = useState<any[]>([]);
@@ -22,7 +22,6 @@ const Dashboard = () => {
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [nameUser, setNameUser] = useState("");
-  const [token, setToken] = useState("");
   const [expire, setExpire] = useState("");
   const navigate = useNavigate();
 
@@ -38,7 +37,7 @@ const Dashboard = () => {
       if (Number(expire) * 1000 < currentDate.getTime()) {
         const response = await axios.get("http://localhost:5000/token");
         config.headers.Authorization = `Bearer ${response.data.accessToken}`;
-        setToken(response.data.accessToken);
+
         const decoded = jwtDecode(response.data.accessToken) as {
           userName: string;
           exp: string;
@@ -57,7 +56,7 @@ const Dashboard = () => {
   const refreshToken = async () => {
     try {
       const response = await axios.get("http://localhost:5000/token");
-      setToken(response.data.accessToken);
+
       const decoded = jwtDecode(response.data.accessToken) as {
         userName: string;
         exp: string;

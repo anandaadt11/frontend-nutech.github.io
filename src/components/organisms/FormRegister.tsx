@@ -10,7 +10,7 @@ const FormRegister = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [massage, setMassage] = useState("");
+
   const navigate = useNavigate();
 
   const register = async (e: SyntheticEvent) => {
@@ -24,7 +24,7 @@ const FormRegister = () => {
       navigate("/");
     } catch (e: any) {
       if (e.response) {
-        setMassage(e.response.data);
+        console.log(e.response.data);
       }
     }
   };

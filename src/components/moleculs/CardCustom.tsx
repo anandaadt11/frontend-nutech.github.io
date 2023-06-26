@@ -1,7 +1,7 @@
 import axios from "axios";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import Button from "./Button";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import DeleteModal from "./DeleteModal";
 import { useState } from "react";
 
