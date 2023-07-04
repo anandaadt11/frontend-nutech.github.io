@@ -26,7 +26,7 @@ const NavbarCustom = ({ nameUser }: NavbarCustomProps) => {
         Dashboard
       </h1>
       <div className="flex gap-5 justify-center items-center">
-        <p>Welcome,{nameUser}</p>
+        <p>Welcome, {nameUser}</p>
         <Button
           onclick={() => Logout()}
           type="button"
