@@ -11,7 +11,9 @@ const NavbarCustom = ({ nameUser }: NavbarCustomProps) => {
 
   const Logout = async () => {
     try {
-      await axios.delete("http://localhost:5000/logout");
+      await axios.delete(
+        "https://app-c8f8ca2d-2b0f-41c7-930c-039bcbaa2e4c.cleverapps.io/logout"
+      );
       navigate("/");
     } catch (error) {
       console.log(error);
