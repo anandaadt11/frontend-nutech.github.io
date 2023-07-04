@@ -20,7 +20,7 @@ const Dashboard = () => {
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [nameUser, setNameUser] = useState("");
-  const [expire, setExpire] = useState("");
+  // const [expire, setExpire] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -64,7 +64,7 @@ const Dashboard = () => {
       };
 
       setNameUser(decoded.userName);
-      setExpire(decoded.exp);
+      // setExpire(decoded.exp);
     } catch (e: any) {
       if (e.response) {
         navigate("/");
