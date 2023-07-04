@@ -27,31 +27,31 @@ const Dashboard = () => {
     refreshToken();
   }, []);
 
-  const axiosJWT = axios.create();
+  // const axiosJWT = axios.create();
 
-  axiosJWT.interceptors.response.use(
-    async (config) => {
-      const currentDate = new Date();
-      if (Number(expire) * 1000 < currentDate.getTime()) {
-        const response = await axios.get(
-          "https://app-c8f8ca2d-2b0f-41c7-930c-039bcbaa2e4c.cleverapps.io/token"
-        );
-        config.headers.Authorization = `Bearer ${response.data.accessToken}`;
+  // axiosJWT.interceptors.response.use(
+  //   async (config) => {
+  //     const currentDate = new Date();
+  //     if (Number(expire) * 1000 < currentDate.getTime()) {
+  //       const response = await axios.get(
+  //         "https://app-c8f8ca2d-2b0f-41c7-930c-039bcbaa2e4c.cleverapps.io/token"
+  //       );
+  //       config.headers.Authorization = `Bearer ${response.data.accessToken}`;
 
-        const decoded = jwtDecode(response.data.accessToken) as {
-          userName: string;
-          exp: string;
-        };
+  //       const decoded = jwtDecode(response.data.accessToken) as {
+  //         userName: string;
+  //         exp: string;
+  //       };
 
-        setNameUser(decoded.userName);
-        setExpire(decoded.exp);
-      }
-      return config;
-    },
-    (error) => {
-      return Promise.reject(error);
-    }
-  );
+  //       setNameUser(decoded.userName);
+  //       setExpire(decoded.exp);
+  //     }
+  //     return config;
+  //   },
+  //   (error) => {
+  //     return Promise.reject(error);
+  //   }
+  // );
 
   const refreshToken = async () => {
     try {
@@ -73,7 +73,7 @@ const Dashboard = () => {
   };
 
   const getProducts = async () => {
-    const response = await axiosJWT.get(
+    const response = await axios.get(
       "https://app-c8f8ca2d-2b0f-41c7-930c-039bcbaa2e4c.cleverapps.io/product"
     );
     setProducts(response.data);
