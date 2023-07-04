@@ -2,7 +2,6 @@ import { SyntheticEvent, useEffect, useState } from "react";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 import NavbarCustom from "../components/moleculs/NavbarCustom";
-import Button from "../components/moleculs/Button";
 import { FaPlus, FaSearch } from "react-icons/fa";
 import CardCustom from "../components/moleculs/CardCustom";
 import Input from "../components/moleculs/Input";

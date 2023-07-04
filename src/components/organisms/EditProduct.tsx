@@ -2,7 +2,6 @@ import { useState, useEffect, SyntheticEvent } from "react";
 import axios from "axios";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import Input from "../moleculs/Input";
-import Button from "../moleculs/Button";
 
 const EditProduct = () => {
   const [title, setTitle] = useState("");
