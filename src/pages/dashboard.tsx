@@ -64,9 +64,9 @@ const Dashboard = () => {
       };
       setNameUser(decoded.userName);
       setExpire(decoded.exp);
-    } catch (e: any) {
-      if (e.response) {
-        return navigate("/");
+    } catch (error: any) {
+      if (error.response) {
+        navigate("/");
       }
     }
   };
@@ -88,7 +88,6 @@ const Dashboard = () => {
     e.preventDefault();
 
     const formData = new FormData();
-
     formData.append("file", file);
     formData.append("title", title);
     formData.append("purchase", purchase);
@@ -136,130 +135,119 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen mx-40 mb-20">
-      <Helmet>
-        <link
-          rel="icon"
-          type="image/svg+xml"
-          href="/Union.svg"
-        />
-        <title>Dashboard</title>
-      </Helmet>
-
+    <div>
       <NavbarCustom nameUser={nameUser} />
-      <div className="flex gap-5 mt-5">
-        <div>
-          <button
-            className="bg-green-500 hover:bg-green-700 text-white text-sm font-bold py-2 px-4 rounded-xl flex gap-2 justify-center items-center"
-            type="button"
-            onClick={() => (window as any).addProduct.showModal()}
-          >
-            <FaPlus /> Add Product
-          </button>
-          <dialog
-            id="addProduct"
-            className="modal"
-          >
-            <form
-              method="dialog"
-              className="modal-box"
-              onSubmit={saveProduct}
-            >
-              <h3 className="font-bold text-xl mb-3 text-fuchsia-500">
-                Add new product
-              </h3>
-              <p className="text-red-500 text-sm text-center">{msg}</p>
-              <Input
-                title="Product Name"
-                placeholder="Product Name"
-                type="text"
-                onchange={(e) => setTitle(e.target.value)}
-                value={title}
-              />
-              <Input
-                title="Purchase Price"
-                placeholder="Purchase Price"
-                type="number"
-                onchange={(e) => setPurchase(e.target.value)}
-                value={purchase}
-              />
-              <Input
-                title="Selling Price"
-                placeholder="Selling Price"
-                type="number"
-                onchange={(e) => setSell(e.target.value)}
-                value={sell}
-              />
-              <Input
-                title="Stok"
-                placeholder="Stok"
-                type="number"
-                onchange={(e) => setStok(e.target.value)}
-                value={stok}
-              />
-              <Input
-                title="Image"
-                type="file"
-                onchange={loadImage}
-                placeholder="Choose File"
-              />
-              {preview ? (
-                <figure className="max-w-md">
-                  <img
-                    src={preview}
-                    alt="Preview Image"
-                  />
-                </figure>
-              ) : (
-                ""
-              )}
-              <div className="modal-action">
-                <button className="mt-5 bg-green-500 hover:bg-green-700 text-white text-sm font-bold py-2 px-4 rounded-xl flex gap-2 justify-center items-center">
-                  Add Product
-                </button>
-              </div>
-            </form>
-            <form
-              method="dialog"
-              className="modal-backdrop"
-            >
-              <button>close</button>
-            </form>
-          </dialog>
-        </div>
-        <div className="relative">
-          <input
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            type="text"
-            className="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-fuchsia-500 focus:border-fuchsia-500 block w-80 p-2.5"
-            placeholder="Search for a Product"
+      <div className="min-h-screen mb-20 w-full lg:px-10">
+        <Helmet>
+          <link
+            rel="icon"
+            type="image/svg+xml"
+            href="/Union.svg"
           />
-          <button
-            type="button"
-            onClick={handleSearch}
-            className="ml-2 p-2 rounded absolute top-0 right-1 bottom-0 text-fuchsia-500"
-          >
-            <FaSearch />
-          </button>
+          <title>Dashboard</title>
+        </Helmet>
+
+        <div className="flex items-center gap-5 mt-3 px-5 py-2">
+          <div className="">
+            <button
+              className="bg-green-500 hover:bg-green-700 text-white text-sm font-bold py-2 px-4 rounded-xl flex gap-1 justify-center items-center"
+              type="button"
+              onClick={() => (window as any).addProduct.showModal()}
+            >
+              <FaPlus /> Add Product
+            </button>
+            <dialog
+              id="addProduct"
+              className="modal"
+            >
+              <form
+                method="dialog"
+                className="modal-box"
+                onSubmit={saveProduct}
+              >
+                <h3 className="font-bold text-xl mb-3 text-fuchsia-500">
+                  Add new product
+                </h3>
+
+                <Input
+                  title="Product Name"
+                  placeholder="Product Name"
+                  type="text"
+                  onchange={(e) => setTitle(e.target.value)}
+                  value={title}
+                />
+                <Input
+                  title="Purchase Price"
+                  placeholder="Purchase Price"
+                  type="number"
+                  onchange={(e) => setPurchase(e.target.value)}
+                  value={purchase}
+                />
+                <Input
+                  title="Selling Price"
+                  placeholder="Selling Price"
+                  type="number"
+                  onchange={(e) => setSell(e.target.value)}
+                  value={sell}
+                />
+                <Input
+                  title="Stok"
+                  placeholder="Stok"
+                  type="number"
+                  onchange={(e) => setStok(e.target.value)}
+                  value={stok}
+                />
+                <Input
+                  title="Image"
+                  type="file"
+                  onchange={loadImage}
+                  placeholder="Choose File"
+                />
+                {preview ? (
+                  <figure className="max-w-md">
+                    <img
+                      src={preview}
+                      alt="Preview Image"
+                    />
+                  </figure>
+                ) : (
+                  ""
+                )}
+                <p className="text-red-500 text-sm text-center mt-3">{msg}</p>
+                <div className="modal-action">
+                  <button className="mt-5 bg-green-500 hover:bg-green-700 text-white text-sm font-bold py-2 px-4 rounded-xl flex gap-2 justify-center items-center">
+                    Add Product
+                  </button>
+                </div>
+              </form>
+              <form
+                method="dialog"
+                className="modal-backdrop"
+              >
+                <button>close</button>
+              </form>
+            </dialog>
+          </div>
+          <div className="relative">
+            <input
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              type="text"
+              className="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-fuchsia-500 focus:border-fuchsia-500 block w-full p-2.5"
+              placeholder="Search for a Product"
+            />
+            <button
+              type="button"
+              onClick={handleSearch}
+              className="ml-2 p-2 rounded absolute top-0 right-1 bottom-0 text-fuchsia-500"
+            >
+              <FaSearch />
+            </button>
+          </div>
         </div>
-      </div>
-      <div className="mt-5 flex flex-wrap gap-10 justify-center">
-        {search !== ""
-          ? searchResults.map((product) => (
-              <CardCustom
-                getProducts={() => getProducts()}
-                key={product.id}
-                id={product.id}
-                url={product.url}
-                name={product.name}
-                purchase={product.purchase_price}
-                sell={product.selling_price}
-                stok={product.stok}
-              />
-            ))
-          : products.map((product) => {
-              return (
+        <div className="mt-5 flex flex-wrap gap-10 justify-center w-full">
+          {search !== ""
+            ? searchResults.map((product) => (
                 <CardCustom
                   getProducts={() => getProducts()}
                   key={product.id}
@@ -270,8 +258,22 @@ const Dashboard = () => {
                   sell={product.selling_price}
                   stok={product.stok}
                 />
-              );
-            })}
+              ))
+            : products.map((product) => {
+                return (
+                  <CardCustom
+                    getProducts={() => getProducts()}
+                    key={product.id}
+                    id={product.id}
+                    url={product.url}
+                    name={product.name}
+                    purchase={product.purchase_price}
+                    sell={product.selling_price}
+                    stok={product.stok}
+                  />
+                );
+              })}
+        </div>
       </div>
     </div>
   );

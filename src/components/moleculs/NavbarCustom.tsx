@@ -21,11 +21,11 @@ const NavbarCustom = ({ nameUser }: NavbarCustomProps) => {
   };
 
   return (
-    <div className="navbar">
-      <h1 className="flex-1 text-2xl font-bold text-left text-fuchsia-500">
+    <div className="navbar px-10 border-b border-fuchsia-500 shadow-md">
+      <h1 className="flex-1 text-2xl font-bold text-left text-fuchsia-500 hidden sm:block">
         Dashboard
       </h1>
-      <div className="flex gap-5 justify-center items-center">
+      <div className="flex gap-5 justify-center items-center ml-auto">
         <p>Welcome, {nameUser}</p>
         <Button
           onclick={() => Logout()}

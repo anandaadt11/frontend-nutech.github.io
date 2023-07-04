@@ -77,7 +77,7 @@ const EditProduct = () => {
         <title>Edit Product</title>
       </Helmet>
       <h1 className="text-3xl font-bold text-fuchsia-500 mb-5">Edit Product</h1>
-      <div className="flex gap-10 justify-center items-center">
+      <div className="px-4">
         <form
           onSubmit={updateProduct}
           className="w-full max-w-md"
@@ -116,6 +116,16 @@ const EditProduct = () => {
             onchange={loadImage}
             placeholder="Choose File"
           />
+          {preview ? (
+            <figure className=" w-full">
+              <img
+                src={preview}
+                alt="Preview Image"
+              />
+            </figure>
+          ) : (
+            ""
+          )}
           <div className="flex gap-3 justify-end">
             <button className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded-xl flex gap-2 justify-center items-center">
               Update
@@ -127,17 +137,6 @@ const EditProduct = () => {
             </Link>
           </div>
         </form>
-
-        {preview ? (
-          <figure className=" w-full">
-            <img
-              src={preview}
-              alt="Preview Image"
-            />
-          </figure>
-        ) : (
-          ""
-        )}
       </div>
     </div>
   );
