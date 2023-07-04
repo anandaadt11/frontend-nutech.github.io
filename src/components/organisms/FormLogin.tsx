@@ -75,7 +75,6 @@ const FormLogin = () => {
 
       <div className="w-full my-5">
         <Button
-          color="fuchsia"
           type="submit"
           title="Login"
           width="w-full"

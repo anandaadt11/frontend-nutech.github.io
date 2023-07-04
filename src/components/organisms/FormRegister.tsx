@@ -76,7 +76,6 @@ const FormRegister = () => {
 
       <div className="w-full my-5">
         <Button
-          color="fuchsia"
           type="submit"
           title="Register"
           width="w-full"
