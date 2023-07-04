@@ -139,6 +139,11 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen mx-40 mb-20">
       <Helmet>
+        <link
+          rel="icon"
+          type="image/svg+xml"
+          href="/Union.svg"
+        />
         <title>Dashboard</title>
       </Helmet>
 
