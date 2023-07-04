@@ -59,13 +59,13 @@ const CardCustom = ({
             </button>
           </Link>
           <div></div>
-          <Button
-            type="button"
-            title="Delete"
-            color="red"
-            onclick={() => setShowModal(true)}
-            icon={<FaTrash />}
-          />
+          <button
+            className="bg-red-500 hover:bg-red-700 text-white text-sm font-bold py-2 px-4 rounded-xl flex gap-2 justify-center items-center"
+            onClick={() => setShowModal(true)}
+          >
+            <FaTrash />
+            Delete
+          </button>
 
           {showModal && (
             <DeleteModal

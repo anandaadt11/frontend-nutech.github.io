@@ -14,19 +14,19 @@ const DeleteModal = ({ closeModal, deleteProduct }: DeleteModalProps) => {
         <p>Are you sure you want to delete this item?</p>
 
         <div className="flex justify-end mt-6 gap-3">
-          <Button
-            type="button"
-            title="Cancel"
-            color="slate"
-            onclick={() => closeModal(false)}
-          />
+          <button
+            className="bg-slate-500 hover:bg-slate-700 text-white text-sm font-bold py-2 px-4 rounded-xl flex gap-2 justify-center items-center"
+            onClick={() => closeModal(false)}
+          >
+            Cancel
+          </button>
 
-          <Button
-            type="button"
-            title="Delete"
-            color="red"
-            onclick={() => deleteProduct()}
-          />
+          <button
+            className="bg-red-500 hover:bg-red-700 text-white text-sm font-bold py-2 px-4 rounded-xl flex gap-2 justify-center items-center"
+            onClick={() => deleteProduct()}
+          >
+            Delete
+          </button>
         </div>
       </div>
     </div>

@@ -16,11 +16,14 @@ const FormRegister = () => {
   const register = async (e: SyntheticEvent) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/users", {
-        name: name,
-        email: email,
-        password: password,
-      });
+      await axios.post(
+        "https://app-c8f8ca2d-2b0f-41c7-930c-039bcbaa2e4c.cleverapps.io/users",
+        {
+          name: name,
+          email: email,
+          password: password,
+        }
+      );
       navigate("/");
     } catch (e: any) {
       if (e.response) {

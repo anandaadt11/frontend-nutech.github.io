@@ -19,7 +19,9 @@ const EditProduct = () => {
   }, []);
 
   const getProductById = async () => {
-    const response = await axios.get(`http://localhost:5000/product/${id}`);
+    const response = await axios.get(
+      `https://app-c8f8ca2d-2b0f-41c7-930c-039bcbaa2e4c.cleverapps.io/product/${id}`
+    );
     setTitle(response.data.name);
     setPurchase(response.data.purchase_price);
     setSell(response.data.selling_price);
@@ -43,11 +45,15 @@ const EditProduct = () => {
     formData.append("selling", sell);
     formData.append("stok", stok);
     try {
-      await axios.patch(`http://localhost:5000/product/${id}`, formData, {
-        headers: {
-          "Content-type": "multipart/form-data",
-        },
-      });
+      await axios.patch(
+        `https://app-c8f8ca2d-2b0f-41c7-930c-039bcbaa2e4c.cleverapps.io/product/${id}`,
+        formData,
+        {
+          headers: {
+            "Content-type": "multipart/form-data",
+          },
+        }
+      );
       setTitle("");
       setSell("");
       setPurchase("");
@@ -103,17 +109,13 @@ const EditProduct = () => {
             placeholder="Choose File"
           />
           <div className="flex gap-3 justify-end">
-            <Button
-              type="submit"
-              color="blue"
-              title="Update"
-            />
+            <button className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded-xl flex gap-2 justify-center items-center">
+              Update
+            </button>
             <Link to="/dashboard">
-              <Button
-                type="button"
-                color="slate"
-                title="Back"
-              />
+              <button className="bg-slate-500 hover:bg-slate-700 text-white text-sm font-bold py-2 px-4 rounded-xl flex gap-2 justify-center items-center">
+                Back
+              </button>
             </Link>
           </div>
         </form>

@@ -17,8 +17,6 @@ const Dashboard = () => {
   const [file, setFile] = useState("");
   const [preview, setPreview] = useState("");
   const [msg, setMsg] = useState("");
-  const [errorName, setErrorName] = useState("");
-  const [isDuplicate, setIsDuplicate] = useState(false);
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [nameUser, setNameUser] = useState("");
@@ -35,7 +33,9 @@ const Dashboard = () => {
     async (config) => {
       const currentDate = new Date();
       if (Number(expire) * 1000 < currentDate.getTime()) {
-        const response = await axios.get("http://localhost:5000/token");
+        const response = await axios.get(
+          "https://app-c8f8ca2d-2b0f-41c7-930c-039bcbaa2e4c.cleverapps.io/token"
+        );
         config.headers.Authorization = `Bearer ${response.data.accessToken}`;
 
         const decoded = jwtDecode(response.data.accessToken) as {
@@ -55,7 +55,9 @@ const Dashboard = () => {
 
   const refreshToken = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/token");
+      const response = await axios.get(
+        "https://app-c8f8ca2d-2b0f-41c7-930c-039bcbaa2e4c.cleverapps.io/token"
+      );
 
       const decoded = jwtDecode(response.data.accessToken) as {
         userName: string;
@@ -72,7 +74,9 @@ const Dashboard = () => {
   };
 
   const getProducts = async () => {
-    const response = await axiosJWT.get("http://localhost:5000/product");
+    const response = await axiosJWT.get(
+      "https://app-c8f8ca2d-2b0f-41c7-930c-039bcbaa2e4c.cleverapps.io/product"
+    );
     setProducts(response.data);
   };
 
@@ -86,16 +90,7 @@ const Dashboard = () => {
     e.preventDefault();
 
     const formData = new FormData();
-    const isNameUnique = checkIfNameUnique(title);
-    if (isNameUnique) {
-      // Lakukan aksi selanjutnya (misalnya, tambahkan barang ke daftar)
-      console.log("Nama barang unik, lanjutkan aksi selanjutnya");
-      setErrorName("");
-      setTitle("");
-      setIsDuplicate(false);
-    } else {
-      setErrorName("Nama barang sudah ada");
-    }
+
     formData.append("file", file);
     formData.append("title", title);
     formData.append("purchase", purchase);
@@ -103,11 +98,15 @@ const Dashboard = () => {
     formData.append("stok", stok);
 
     try {
-      await axios.post("http://localhost:5000/product", formData, {
-        headers: {
-          "Content-type": "multipart/form-data",
-        },
-      });
+      await axios.post(
+        "https://app-c8f8ca2d-2b0f-41c7-930c-039bcbaa2e4c.cleverapps.io/product",
+        formData,
+        {
+          headers: {
+            "Content-type": "multipart/form-data",
+          },
+        }
+      );
       navigate("/dashboard");
       setTitle("");
       setSell("");
@@ -130,12 +129,6 @@ const Dashboard = () => {
     handleSearch();
   }, [search]);
 
-  const checkIfNameUnique = (name: string) => {
-    const existingItems = products.map((item) => item.name);
-
-    return !existingItems.includes(name);
-  };
-
   const handleSearch = () => {
     const results: any = products.filter((item) =>
       item.name.toLowerCase().includes(search.toLowerCase())
@@ -149,13 +142,13 @@ const Dashboard = () => {
       <NavbarCustom nameUser={nameUser} />
       <div className="flex gap-5 mt-5">
         <div>
-          <Button
-            color="green"
-            title="Add Product"
+          <button
+            className="bg-green-500 hover:bg-green-700 text-white text-sm font-bold py-2 px-4 rounded-xl flex gap-2 justify-center items-center"
             type="button"
-            onclick={() => (window as any).addProduct.showModal()}
-            icon={<FaPlus />}
-          />
+            onClick={() => (window as any).addProduct.showModal()}
+          >
+            <FaPlus /> Add Product
+          </button>
           <dialog
             id="addProduct"
             className="modal"
@@ -169,7 +162,6 @@ const Dashboard = () => {
                 Add new product
               </h3>
               <p className="text-red-500 text-sm text-center">{msg}</p>
-              <p className="text-red-500 text-sm text-center">{errorName}</p>
               <Input
                 title="Product Name"
                 placeholder="Product Name"
@@ -215,12 +207,9 @@ const Dashboard = () => {
                 ""
               )}
               <div className="flex gap-3 justify-end mt-5">
-                <Button
-                  type="submit"
-                  color="green"
-                  title="Add Product"
-                  disabled={!title || isDuplicate}
-                />
+                <button className="bg-green-500 hover:bg-green-700 text-white text-sm font-bold py-2 px-4 rounded-xl flex gap-2 justify-center items-center">
+                  Add Product
+                </button>
               </div>
             </form>
             <form
