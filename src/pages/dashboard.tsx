@@ -6,6 +6,7 @@ import { FaPlus, FaSearch } from "react-icons/fa";
 import CardCustom from "../components/moleculs/CardCustom";
 import Input from "../components/moleculs/Input";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const Dashboard = () => {
   const [products, setProducts] = useState<any[]>([]);
@@ -137,6 +138,10 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen mx-40 mb-20">
+      <Helmet>
+        <title>Dashboard</title>
+      </Helmet>
+
       <NavbarCustom nameUser={nameUser} />
       <div className="flex gap-5 mt-5">
         <div>

@@ -2,6 +2,7 @@ import { useState, useEffect, SyntheticEvent } from "react";
 import axios from "axios";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import Input from "../moleculs/Input";
+import { Helmet } from "react-helmet";
 
 const EditProduct = () => {
   const [title, setTitle] = useState("");
@@ -67,6 +68,9 @@ const EditProduct = () => {
 
   return (
     <div className="flex flex-col min-h-screen w-full items-center justify-center">
+      <Helmet>
+        <title>Edit Product</title>
+      </Helmet>
       <h1 className="text-3xl font-bold text-fuchsia-500 mb-5">Edit Product</h1>
       <div className="flex gap-10 justify-center items-center">
         <form
