@@ -204,8 +204,8 @@ const Dashboard = () => {
               ) : (
                 ""
               )}
-              <div className="modal-action flex gap-3 justify-end mt-5">
-                <button className="bg-green-500 hover:bg-green-700 text-white text-sm font-bold py-2 px-4 rounded-xl flex gap-2 justify-center items-center">
+              <div className="modal-action">
+                <button className="mt-5 bg-green-500 hover:bg-green-700 text-white text-sm font-bold py-2 px-4 rounded-xl flex gap-2 justify-center items-center">
                   Add Product
                 </button>
               </div>
