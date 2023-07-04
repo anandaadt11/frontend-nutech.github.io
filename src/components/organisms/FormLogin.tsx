@@ -22,10 +22,10 @@ const FormLogin = () => {
           password: password,
         },
         {
+          withCredentials: true,
           headers: {
             "Content-Type": "application/json",
           },
-          withCredentials: true,
         }
       );
       navigate("/dashboard");

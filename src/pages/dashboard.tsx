@@ -57,7 +57,6 @@ const Dashboard = () => {
       const response = await axios.get(
         "https://app-c8f8ca2d-2b0f-41c7-930c-039bcbaa2e4c.cleverapps.io/token"
       );
-
       const decoded = jwtDecode(response.data.accessToken) as {
         userName: string;
         exp: string;
