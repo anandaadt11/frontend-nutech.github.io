@@ -27,7 +27,9 @@ const CardCustom = ({
 
   const deleteProduct = async (productId: number) => {
     try {
-      await axios.delete(`http://localhost:5000/product/${productId}`);
+      await axios.delete(
+        `https://app-c8f8ca2d-2b0f-41c7-930c-039bcbaa2e4c.cleverapps.io/${productId}`
+      );
       getProducts();
     } catch (error) {
       console.log(error);
