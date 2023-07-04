@@ -41,13 +41,22 @@ const CardCustom = ({
       <figure className="w-full h-64">
         <img
           src={url}
-          alt="Shoes"
+          alt={name}
         />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{name}</h2>
-        <p>purchase: {purchase}</p>
-        <p>Sell: {sell}</p>
+        <p>
+          purchase:{" "}
+          {purchase.toLocaleString("id-ID", {
+            style: "currency",
+            currency: "IDR",
+          })}
+        </p>
+        <p>
+          Sell:{" "}
+          {sell.toLocaleString("id-ID", { style: "currency", currency: "IDR" })}
+        </p>
         <p>Stok : {stok}</p>
         <div className="card-actions justify-end">
           <Link to={`/dashboard/edit/${id}`}>
