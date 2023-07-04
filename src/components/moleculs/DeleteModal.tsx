@@ -1,5 +1,3 @@
-import Button from "./Button";
-
 type DeleteModalProps = {
   closeModal: any;
   deleteProduct: any;
